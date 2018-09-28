@@ -1,0 +1,19 @@
+- name: Create instance(s)
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    service_account_email: demo-ansible@garrettwong-audit.iam.gserviceaccount.com
+    credentials_file: /home/garrettwong/key.json
+    project_id: garrettwong-audit
+    machine_type: n1-standard-1
+    image: debian-7
+  tasks:
+   - name: Launch instances
+     gce:
+         instance_names: dev
+         machine_type: "{{ machine_type }}"
+         image: "{{ image }}"
+         service_account_email: "{{ service_account_email }}"
+         credentials_file: "{{ credentials_file }}"
+         project_id: "{{ project_id }}"
