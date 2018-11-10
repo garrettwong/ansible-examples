@@ -1,0 +1,2 @@
+1. add startup script to install ansible on ansible host
+2. add project metadata ssh key setup
