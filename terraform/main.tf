@@ -33,7 +33,7 @@ resource "google_compute_instance" "default" {
     foo = "bar"
   }
 
-  metadata_startup_script = "echo hi > /test.txt"
+  metadata_startup_script = "${google_storage_bucket.ansible_bucket.name}/install-ansible.sh"
 
   service_account {
     scopes = ["userinfo-email", "compute-ro", "storage-ro"]
@@ -86,7 +86,7 @@ network_interface {
 
 }
 
-resource "google_storage_bucket" "image-store" {
+resource "google_storage_bucket" "ansible_bucket" {
   name     = "gw-ansible-bucket"
   location = "US"
 
@@ -94,4 +94,16 @@ resource "google_storage_bucket" "image-store" {
     main_page_suffix = "index.html"
     not_found_page   = "404.html"
   }
+}
+
+resource "google_compute_project_metadata" "default" {
+  metadata {
+    sshKeys = "${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}" 
+  }
+}
+
+resource "google_storage_bucket_object" "startup_script" {
+  name   = "install-ansible.sh"
+  source = "install-ansible.sh"
+  bucket = "${google_storage_bucket.ansible_bucket.name}"
 }
