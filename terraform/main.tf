@@ -30,10 +30,8 @@ resource "google_compute_instance" "default" {
   }
 
   metadata {
-    foo = "bar"
-  }
-
-  metadata_startup_script = "${google_storage_bucket.ansible_bucket.name}/install-ansible.sh"
+    startup-script-url = "${google_storage_bucket.ansible_bucket.url}/install-ansible.sh"
+  } 
 
   service_account {
     scopes = ["userinfo-email", "compute-ro", "storage-ro"]
