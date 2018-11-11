@@ -10,8 +10,6 @@ REMOTE_IP_ADDR=$IP_ADDR
 # create ansible hosts file
 sudo cat > /etc/ansible/hosts << EOF
 [webservers]
-2.2.2.2
-1.1.1.1
 EOF
 
 ssh-copy-id $USERNAME@$REMOTE_IP_ADDR
