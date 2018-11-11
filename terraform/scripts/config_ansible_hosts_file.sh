@@ -4,7 +4,7 @@ TEXT=$(cat ../install-ansible-template.sh)
 echo "$TEXT" > input.txt
 
 # get IP addresses of the ansible nodes
-IP_ADDRESS_ARRAY=( "1.1.1.1" "2.2.2.2" )
+IP_ADDRESS_ARRAY=( $1 "2.2.2.2" )
 
 # get IP addresses from array and format as a newline separated string of ip addresses
 ## 1.1.1.1
