@@ -105,7 +105,7 @@ resource "google_storage_bucket_object" "startup_script" {
 
 resource "null_resource" "config_ansible_hosts_file" {
   provisioner "local-exec" {
-    command = "scripts/config_ansible_hosts_file.sh ${google_compute_instance.ansible_child_1.network_interface.0.access_config.0.nat_ip}"
+    command = "scripts/config_ansible_hosts_file.sh ${google_compute_instance.ansible_child_1.network_interface.0.access_config.0.nat_ip} ${google_compute_instance.ansible_child_2.network_interface.0.access_config.0.nat_ip}"
   }
 
   # provisioner "local-exec" {
