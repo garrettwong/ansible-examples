@@ -31,5 +31,17 @@ chmod +x install-ansible.sh
 
 ## References
 
-[Adding/Removing SSH Keys](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys)
+* [Adding/Removing SSH Keys](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys)
+* [StartupScripts in GCE](https://cloud.google.com/compute/docs/startupscript#using_a_local_startup_script_file)
+* [ssh-copy-id examples](https://www.ssh.com/ssh/copy-id#sec-Copy-the-key-to-a-server)
+* [Ansible Inventory](https://docs.ansible.com/ansible/2.4/intro_inventory.html)
 
+## Troubleshooting
+
+* Startup Script sometimes not running?
+
+* Fixing Unprotected Private Key File:
+```
+sudo chmod 600 ~/.ssh/id_rsa
+sudo chmod 600 ~/.ssh/id_rsa.pub
+```

@@ -29,11 +29,11 @@ resource "google_compute_instance" "default" {
   }
 
   metadata {
-    startup-script-url = "${google_storage_bucket.ansible_bucket.url}/install-ansible.sh"
+    startup-script-url = "${google_storage_bucket.ansible_bucket.url}/${google_storage_bucket_object.startup_script.name}"
   }
 
   service_account {
-    scopes = ["userinfo-email", "compute-ro", "storage-ro"]
+    scopes = ["https://www.googleapis.com/auth/cloud-platform"]
   }
 }
 
@@ -101,6 +101,8 @@ resource "google_storage_bucket_object" "startup_script" {
   name   = "install-ansible.sh"
   source = "install-ansible.sh"
   bucket = "${google_storage_bucket.ansible_bucket.name}"
+
+  depends_on = ["null_resource.config_ansible_hosts_file"]
 }
 
 resource "null_resource" "config_ansible_hosts_file" {

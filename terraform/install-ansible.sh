@@ -1,20 +1,29 @@
 #!/bin/sh
 
-echo "nonsudo test" > /home/nonsudotest.txt
-sudo echo "sudo test" > /home/sudotest.txt
+echo "nonsudo test" > /home/one
 
 IP_ADDR=$(ip address)
 USERNAME="garrettwong"
-REMOTE_IP_ADDR=$IP_ADDR
+ANSIBLE_HOST_IP=$IP_ADDR
 
-# create ansible hosts file
-sudo cat > /etc/ansible/hosts << EOF
+sudo cat > /home/garrettwong/ansible-hosts << EOF
 [webservers]
-
+104.197.111.57
 35.232.5.127
 EOF
 
-ssh-copy-id $USERNAME@$REMOTE_IP_ADDR
+sudo echo "sudo test" > /home/two
+
+# generate ssh keys
+KEY_FILENAME="ansible_ssh_key"
+cat /dev/zero | ssh-keygen -q -N "" -f ~/.ssh/$KEY_FILENAME -C $USERNAME
+PUB_KEY=$(cat ~/.ssh/$KEY_FILENAME.pub)
+
+sudo echo "three" > /home/three
+
+# copy ssh keys from current location to ansible-host server
+# ssh-copy-id -i ~/.ssh/ansible_ssh_key $USERNAME@$ANSIBLE_HOST_IP
+gcloud compute project-info add-metadata --metadata="sshKeys=$PUB_KEY"
 
 sudo apt-get update
 sudo apt-get --assume-yes install software-properties-common

@@ -26,3 +26,5 @@ echo "$IP_ADDRESSES_TEXT" | awk '{gsub(/\\n/,"\n")}1' | sed '$d' > add.txt
 echo "IP:"
 echo "$IP_ADDRESSES_TEXT"
 echo "$TEXT" | sed "/\[webservers\]/r add.txt" input.txt > install-ansible.sh
+
+chmod +x install-ansible.sh
