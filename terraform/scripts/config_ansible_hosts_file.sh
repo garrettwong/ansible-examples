@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 TEXT=$(cat ../install-ansible-template.sh)
 echo "$TEXT" > input.txt
