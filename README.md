@@ -11,6 +11,9 @@
 ```
 
 ## Using Terraform Deployment of Ansible Host and VMs
+
+In the terraform/ directory, run the following commands to deploy an ansible setup.
+
 ```bash
 # install terraform (if not installed)
 ./install-terraform.sh
@@ -21,4 +24,12 @@ terraform init
 terraform apply --auto-approve
 ```
 
+
+gsutil cp gs://gw-ansible-bucket/install-ansible.sh .
+chmod +x install-ansible.sh 
+./install-ansible.sh 
+
+## References
+
+[Adding/Removing SSH Keys](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys)
 
