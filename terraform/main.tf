@@ -1,15 +1,15 @@
 provider "google" {
   credentials = "${file("sa-key.json")}"
-  project     = "cltestproject-219903"
+  project     = "forseti-security-new"
   region      = "us-central1"
 }
 
 resource "google_compute_instance" "default" {
-  name         = "ansible-host"
+  name         = "ans-control-node"
   machine_type = "n1-standard-1"
   zone         = "us-central1-a"
 
-  tags = ["ansible"]
+  tags = ["ansible", "allow-ssh", "allow-http"]
 
   boot_disk {
     initialize_params {
@@ -38,11 +38,11 @@ resource "google_compute_instance" "default" {
 }
 
 resource "google_compute_instance" "ansible_child_1" {
-  name         = "ansible-child-1"
+  name         = "ans-child-1"
   machine_type = "n1-standard-1"
   zone         = "us-central1-a"
 
-  tags = ["foo", "bar"]
+  tags = ["allow-ssh", "allow-http"]
 
   boot_disk {
     initialize_params {
@@ -60,11 +60,11 @@ resource "google_compute_instance" "ansible_child_1" {
 }
 
 resource "google_compute_instance" "ansible_child_2" {
-  name         = "ansible-child-2"
+  name         = "ans-child-2"
   machine_type = "n1-standard-1"
   zone         = "us-central1-a"
 
-  tags = ["foo", "bar"]
+  tags = ["allow-ssh", "allow-http"]
 
   boot_disk {
     initialize_params {

@@ -1,6 +1,0 @@
-1. add startup script to install ansible on ansible host
-2. add project metadata ssh key setup
-
-3. ensure startup script runs with ansible-host vm is created
-4. try run startup script as sudo
-5. try to create the ansible hosts file
