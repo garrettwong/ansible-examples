@@ -8,8 +8,8 @@ ANSIBLE_HOST_IP=$IP_ADDR
 
 sudo cat > /home/garrettwong/ansible-hosts << EOF
 [webservers]
-104.197.111.57
-35.232.5.127
+35.193.4.222
+35.224.206.189
 EOF
 
 sudo echo "sudo test" > /home/two

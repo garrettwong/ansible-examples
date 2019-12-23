@@ -1,7 +1,7 @@
 provider "google" {
   credentials = "${file("sa-key.json")}"
-  project     = "cltestproject-219903"
   region      = "us-central1"
+  project     = "forseti-security-new"
 }
 
 resource "google_compute_instance" "default" {
