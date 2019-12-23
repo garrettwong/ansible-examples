@@ -8,13 +8,8 @@ ANSIBLE_HOST_IP=$IP_ADDR
 
 sudo cat > /home/garrettwong/ansible-hosts << EOF
 [webservers]
-<<<<<<< HEAD:terraform11/install-ansible.sh
-35.193.4.222
-35.224.206.189
-=======
-35.225.74.89
-35.222.233.212
->>>>>>> 4ab965c8220daea3d117f67a3a7e96cd671f9f62:terraform/install-ansible.sh
+34.82.177.130
+34.82.44.169
 EOF
 
 sudo echo "sudo test" > /home/two
